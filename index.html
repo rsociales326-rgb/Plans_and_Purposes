@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plans & Purposes Practice - Teacher Verónica Hermida</title>
+    <!-- Tailwind CSS for clean white modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #111827;
+        }
+        .animate-fade {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
+
+    <header class="w-full border-b border-gray-200 py-5 px-6 md:px-12 bg-white sticky top-0 z-50 shadow-xs">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3.5">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-sm">
+                    <i class="fa-solid fa-briefcase text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 block mb-0.5">Teacher Verónica Hermida</span>
+                    <h1 class="text-lg md:text-xl font-bold text-gray-900 tracking-tight">Business English: Plans & Purposes</h1>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="text-xs font-semibold text-gray-400 block">Elementary Level</span>
+                <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">5 Tasks</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+        
+        <!-- Explanation Banner -->
+        <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div class="flex items-start space-x-4">
+                <div class="bg-blue-600 text-white rounded-xl p-3 shrink-0">
+                    <i class="fa-solid fa-bullseye text-lg"></i>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="text-base font-bold text-gray-900">How to Express Plans and Purposes</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        In business, say what you plan to do using <span class="font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">be going to</span>, and explain your reason with <span class="font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">to + verb</span>.
+                    </p>
+                    <div class="inline-flex flex-wrap items-center gap-2 bg-gray-50 px-4 py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-medium">
+                        <span class="text-gray-800 font-bold">I'm going to email the client</span>
+                        <span class="bg-blue-600 text-white font-bold px-2 py-0.5 rounded text-xs">TO</span>
+                        <span class="text-gray-800 font-bold">send the invoice</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container for Questions -->
+        <form id="quiz-form" class="space-y-6">
+            <div id="questions-container" class="space-y-6">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Submit Button & Final Results Header -->
+            <div class="pt-4 flex flex-col items-center justify-center space-y-4">
+                <button type="button" onclick="checkAllAnswers()" id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg flex items-center space-x-2.5 text-base cursor-pointer">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Check Answers</span>
+                </button>
+
+                <!-- Final Summary Banner (Hidden until submission) -->
+                <div id="final-summary" class="hidden w-full bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-md animate-fade">
+                    <div id="score-badge" class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl"></div>
+                    <h3 id="summary-title" class="text-xl font-bold text-gray-900 mb-1"></h3>
+                    <p id="summary-text" class="text-sm text-gray-600 max-w-md mx-auto mb-4"></p>
+                    <button type="button" onclick="resetPractice()" class="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center space-x-1.5 cursor-pointer">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Try Again</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <footer class="text-center py-6 border-t border-gray-200 bg-white text-xs text-gray-500 font-medium">
+        Teacher Verónica Hermida &bull; Elementary Business English
+    </footer>
+
+    <script>
+        const tasks = [
+            {
+                id: 1,
+                title: "Email Management",
+                plan: "check my inbox and reply to clients",
+                correctPurpose: "to update them on the new project schedule",
+                options: [
+                    "to order pizza for the office party",
+                    "to update them on the new project schedule",
+                    "to book a weekend trip to the beach",
+                    "to watch a movie"
+                ],
+                explanation: "We reply to clients to share work updates and project details."
+            },
+            {
+                id: 2,
+                title: "Client Meeting Preparation",
+                plan: "print the monthly sales report",
+                correctPurpose: "to discuss the numbers with my manager",
+                options: [
+                    "to discuss the numbers with my manager",
+                    "to decorate the office breakroom",
+                    "to practice playing the guitar",
+                    "to clean my computer screen"
+                ],
+                explanation: "Sales reports are printed to review financial numbers during meetings."
+            },
+            {
+                id: 3,
+                title: "Office Supplies",
+                plan: "call the supplier",
+                correctPurpose: "to order printer paper and pens",
+                options: [
+                    "to schedule a dentist appointment",
+                    "to order printer paper and pens",
+                    "to ask for restaurant tips",
+                    "to buy a new jacket"
+                ],
+                explanation: "Office suppliers provide stationery like paper and pens."
+            },
+            {
+                id: 4,
+                title: "Internal Communication",
+                plan: "schedule a team call",
+                correctPurpose: "to review this week's tasks",
+                options: [
+                    "to watch online video clips",
+                    "to learn how to bake bread",
+                    "to review this week's tasks",
+                    "to book my summer holiday"
+                ],
+                explanation: "Team calls help members check progress on current tasks."
+            },
+            {
+                id: 5,
+                title: "Business Presentation",
+                plan: "prepare a slide deck",
+                correctPurpose: "to present our proposal to investors",
+                options: [
+                    "to present our proposal to investors",
+                    "to search for dinner recipes",
+                    "to listen to music",
+                    "to buy daily groceries"
+                ],
+                explanation: "Slide decks are used in meetings to present ideas and proposals."
+            }
+        ];
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-200 rounded-2xl p-6 shadow-xs space-y-4";
+                card.id = `card-${task.id}`;
+
+                // Shuffle options once for rendering
+                const shuffledOptions = [...task.options].sort(() => Math.random() - 0.5);
+
+                let optionsHTML = shuffledOptions.map(opt => `
+                    <option value="${opt}">${opt}</option>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200 uppercase tracking-wider">Scenario ${index + 1}</span>
+                        <h3 class="text-sm font-bold text-gray-800">${task.title}</h3>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col gap-2">
+                            <div class="text-sm font-semibold text-gray-800 flex flex-wrap items-center gap-1.5">
+                                <span class="text-blue-700">I'm going to</span>
+                                <span class="text-gray-900 font-bold bg-white px-2.5 py-1 rounded border border-gray-200 shadow-2xs">${task.plan}</span>
+                            </div>
+                            
+                            <select id="select-${task.id}" class="w-full bg-white border-2 border-gray-300 focus:border-blue-600 focus:ring-0 rounded-xl px-3.5 py-2.5 text-gray-800 font-medium text-sm transition-all shadow-2xs outline-none cursor-pointer mt-1">
+                                <option value="" disabled selected>-- Choose purpose (starts with 'to') --</option>
+                                ${optionsHTML}
+                            </select>
+                        </div>
+
+                        <!-- Feedback Box -->
+                        <div id="feedback-${task.id}" class="hidden rounded-xl p-4 text-sm font-medium transition-all"></div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function checkAllAnswers() {
+            let correctCount = 0;
+            let answeredAll = true;
+
+            tasks.forEach(task => {
+                const select = document.getElementById(`select-${task.id}`);
+                const feedback = document.getElementById(`feedback-${task.id}`);
+                const val = select.value;
+
+                feedback.classList.remove('hidden');
+
+                if (!val) {
+                    answeredAll = false;
+                    feedback.className = "rounded-xl p-3.5 text-xs sm:text-sm font-medium bg-amber-50 border border-amber-200 text-amber-800 flex items-center space-x-2";
+                    feedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-600"></i><span>Please select an answer for this question.</span>`;
+                    return;
+                }
+
+                if (val === task.correctPurpose) {
+                    correctCount++;
+                    feedback.className = "rounded-xl p-3.5 text-xs sm:text-sm font-medium bg-emerald-50 border border-emerald-200 text-emerald-800 space-y-1";
+                    feedback.innerHTML = `
+                        <div class="flex items-center space-x-2 font-bold text-emerald-900">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                            <span>Correct!</span>
+                        </div>
+                        <p class="text-emerald-900 text-xs sm:text-sm">${task.explanation}</p>
+                    `;
+                } else {
+                    feedback.className = "rounded-xl p-3.5 text-xs sm:text-sm font-medium bg-rose-50 border border-rose-200 text-rose-800 space-y-1";
+                    feedback.innerHTML = `
+                        <div class="flex items-center space-x-2 font-bold text-rose-900">
+                            <i class="fa-solid fa-circle-xmark text-rose-600"></i>
+                            <span>Incorrect</span>
+                        </div>
+                        <p class="text-xs sm:text-sm"><strong>Correct answer:</strong> <span class="underline">${task.correctPurpose}</span></p>
+                        <p class="text-xs text-rose-700 mt-1">${task.explanation}</p>
+                    `;
+                }
+            });
+
+            if (!answeredAll) {
+                return;
+            }
+
+            // Show summary
+            const summary = document.getElementById('final-summary');
+            const badge = document.getElementById('score-badge');
+            const title = document.getElementById('summary-title');
+            const text = document.getElementById('summary-text');
+
+            summary.classList.remove('hidden');
+
+            if (correctCount === tasks.length) {
+                badge.className = "inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl bg-emerald-100 text-emerald-600";
+                badge.innerHTML = `<i class="fa-solid fa-trophy"></i>`;
+                title.innerText = "Excellent Work!";
+                text.innerText = `You scored ${correctCount} out of ${tasks.length}. Perfect understanding of business plans and purposes!`;
+            } else if (correctCount >= 3) {
+                badge.className = "inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl bg-blue-100 text-blue-600";
+                badge.innerHTML = `<i class="fa-solid fa-thumbs-up"></i>`;
+                title.innerText = "Good Job!";
+                text.innerText = `You scored ${correctCount} out of ${tasks.length}. Review the feedback above to improve further.`;
+            } else {
+                badge.className = "inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl bg-amber-100 text-amber-600";
+                badge.innerHTML = `<i class="fa-solid fa-book-open"></i>`;
+                title.innerText = "Keep Practicing!";
+                text.innerText = `You scored ${correctCount} out of ${tasks.length}. Review the correct answers above and try again.`;
+            }
+
+            summary.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetPractice() {
+            document.getElementById('final-summary').classList.add('hidden');
+            renderQuestions();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            renderQuestions();
+        };
+    </script>
+</body>
+</html>
